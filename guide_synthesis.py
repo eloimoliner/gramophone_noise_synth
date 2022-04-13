@@ -3,7 +3,7 @@ import numpy as np
 from scipy.fft import fft, ifft
 class noise_presynthesis:
     def __init__(self, gains=[[0,0,0,0,0,0]],
-                 noise_gain=0, args
+                 noise_gain=0, args=None
                  ):
         #save params
         self.gains=gains
