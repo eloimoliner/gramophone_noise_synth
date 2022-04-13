@@ -46,7 +46,7 @@ class GramophoneSampler:
             
             sigma, m, period_split = self.create_schedules(nb_steps,taup)
             print("period split at step ",period_split)
-            
+            device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
             #sample from prior
             audio = torch.randn((1,self.audio_len)).to(device)
             print(audio.device)
