@@ -8,8 +8,9 @@ class noise_presynthesis:
         #save params
         self.gains=gains
         self.noise_gain=noise_gain
-        self.generate_hiss_EQ()
         self.args=args
+        self.generate_hiss_EQ()
+        
 
 
     def generate_hiss_EQ(self):
