@@ -9,6 +9,7 @@ class noise_presynthesis:
         self.gains=gains
         self.noise_gain=noise_gain
         self.args=args
+        self.Td=60/78
         self.generate_hiss_EQ()
         
 
@@ -135,7 +136,7 @@ class noise_presynthesis:
 
     def add_thumps(self,positions, strengths):
         for i in range(len(positions)):
-            s=int(positions[i]*Td*self.args.sample_rate)
+            s=int(positions[i]*self.Td*self.args.sample_rate)
             thump=self.synthesize_thump(s,strengths[i])
             self.x+=thump
     
