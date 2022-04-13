@@ -24,8 +24,8 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 from learner import Learner
-from model import UNet
 from getters import get_sde
+from model import UNet
 
 def run(args):
 

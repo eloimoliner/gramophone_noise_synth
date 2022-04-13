@@ -10,7 +10,6 @@ from tqdm import tqdm
 from glob import glob
 
 #from dataset import from_path as dataset_from_path
-from model import UNet
 from getters import get_sde
 import time
 from inference import  Sampling
@@ -31,7 +30,7 @@ class Learner:
                             for param in self.model.parameters()]
         self.sde = get_sde(args.sde_type, args.sde_kwargs)
 
-        self.sampler=SDESampling2(self.model,self.sde)
+        self.sampler=GramophoneSampler(self.model,self.sde)
 
         self.ema_rate = args.ema_rate
         self.train_set = train_set
@@ -98,10 +97,9 @@ class Learner:
             return False
 
     def sample(self):
-        self.sampler=SDESampling2(self.model,self.sde)
         device = next(self.model.parameters()).device
-        noise = torch.randn(8, self.args.audio_len, device=device)
-        res=self.sampler.predict(noise,100)
+        #noise = torch.randn(8, self.args.audio_len, device=device)
+        res=self.sampler.predict_unconditional(100,1)
         res=res.flatten()
         return res
 

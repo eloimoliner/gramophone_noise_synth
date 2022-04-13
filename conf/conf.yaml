@@ -18,7 +18,7 @@ device: "cpu" #it will be updated in the code, no worries
 unet:
 ## Model params
   padding: "circular" #or "circular" or others see nn.Convd1 documentation
-  use_attention: False
+  use_attention: True
   num_att_heads: 4
   
   

@@ -14,11 +14,9 @@ export TORCH_USE_RTLD_GLOBAL=YES
 export HYDRA_FULL_ERROR=1
 export CUDA_LAUNCH_BLOCKING=1
 
-n=$SLURM_ARRAY_TASK_ID
-iteration=`sed -n "${n} p" iteration_parameters.txt`
 #
-PATH_EXPERIMENT=experiments/${n}
+PATH_EXPERIMENT=experiments/trained_model
 mkdir $PATH_EXPERIMENT
 
 #python train_w_cqt.py path_experiment="$PATH_EXPERIMENT"  $iteration
-python train.py model_dir="$PATH_EXPERIMENT" $iteration
+python train.py model_dir="$PATH_EXPERIMENT"
