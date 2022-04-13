@@ -1,0 +1,23 @@
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='vp-cos' save_interval=3000
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='subvp-cos' save_interval=3000
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='generalized-sub-vp-cos' sde_kwargs.gamma=1 sde_kwargs.eta=1 save_interval=3000
+#here I improved the dataloader
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='subvp-cos' save_interval=6000
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='generalized-sub-vp-cos' sde_kwargs.gamma=1 sde_kwargs.eta=1 save_interval=3000
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='vp-cos' save_interval=3000
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="diffwave" batch_size=16 sde_type='vp-sigmoid' save_interval=3000
+#sampling rate changed to 42598.4 (warning! in the audio files is 42598)
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="diffwave" batch_size=16 sde_type='subvp-cos' save_interval=6000
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="unet" batch_size=16 sde_type='subvp-cos' save_interval=6000 
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="sashimi" batch_size=8 sde_type='subvp-cos' save_interval=6000
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="unet" batch_size=16 sde_type='subvp-cos' save_interval=6000 unet.use_attention=True
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="sashimi" batch_size=2 sde_type='subvp-cos' save_interval=6000 sashimi.pool=[4,4] sashimi.n_layers=2
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="unet" batch_size=16 sde_type='vp-cos' save_interval=20000 unet.use_attention=True
+#Here is 15 but the volume is randomized during training. If this work, it should be insensible to noise variations.
+dset=noises_42k sample_rate=42598.4 audio_len=32768 architecture="unet" batch_size=16 sde_type='vp-cos' save_interval=50000 unet.use_attention=True
+#correct the weird sampling rate thing. Increasing variance in dataset from -10 to 10
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="unet" batch_size=16 sde_type='vp-cos' save_interval=50000 unet.use_attention=True
+#correct the weird sampling rate thing. Fix dataset variance, normalized using the median
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="unet" batch_size=16 sde_type='vp-cos' save_interval=50000 unet.use_attention=True
+#correct the weird sampling rate thing. 6db dataset variance, normalized using the median
+dset=noises_44k sample_rate=44100 audio_len=33923 architecture="unet" batch_size=16 sde_type='vp-cos' save_interval=50000 unet.use_attention=True

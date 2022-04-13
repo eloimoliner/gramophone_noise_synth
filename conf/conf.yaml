@@ -1,0 +1,68 @@
+defaults:
+  - dset: noises_44k
+
+model_dir: "experiments/trained_noise_diff"
+
+architecture: "unet" #"unet"
+
+sample_rate: 44100
+audio_len: 33923 #approximately one period at 78RPM
+
+#training functionality parameters
+num_workers: 4 #useful to speed up the dataloader
+device: "cpu" #it will be updated in the code, no worries
+
+
+
+#unet params
+unet:
+## Model params
+  padding: "circular" #or "circular" or others see nn.Convd1 documentation
+  use_attention: False
+  num_att_heads: 4
+  
+  
+#
+lr: 2e-4 #used
+#schedule_sampler: "uniform"
+batch_size: 16
+
+#microbatch: -1  # -1 disables microbatches
+ema_rate: 0.9999  
+
+#for lr scheduler (not noise schedule!!)
+scheduler_step_size: 60000
+scheduler_gamma: 0.8
+
+restore : False
+checkpoint_id: None
+
+
+#logging params
+log_interval: 10
+save_interval: 500000
+#
+#Monitoring IDK what it is
+n_bins: 10
+#
+#
+
+
+sde_type: 'vp-cos'
+sde_kwargs:
+  gamma: None
+  eta: None
+  sigma_min: 1e-4
+  sigma_max: 0.999
+
+# Hydra config
+hydra:
+  job:
+    config:
+      # configuration for the ${hydra.job.override_dirname} runtime variable
+      override_dirname:
+        kv_sep: '='
+        item_sep: ','
+        # Remove all paths, as the / in them would mess up things
+        exclude_keys: ['path_experiment',
+          'hydra.job_logging.handles.file.filename']
