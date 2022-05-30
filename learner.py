@@ -12,7 +12,7 @@ from glob import glob
 #from dataset import from_path as dataset_from_path
 from getters import get_sde
 import time
-from inference import  Sampling
+from inference import  GramophoneSampler
 import utils
 
 
